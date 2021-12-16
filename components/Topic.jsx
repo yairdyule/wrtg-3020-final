@@ -1,11 +1,4 @@
-import { useState, useContext } from "react";
 import { MdAttachMoney, MdMoneyOffCsred } from "react-icons/md";
-import {
-  useUnsureUpdate,
-  useUnsure,
-  useOpinion,
-  useOpinionUpdate,
-} from "./OpinionContext";
 
 export default function Topic({
   topic,
@@ -15,6 +8,7 @@ export default function Topic({
   DontIcon,
 }) {
   const [defund, setDefund] = useState(true);
+
   const DefundSVG = (
     <span className="flex-none inline-flex items-center justify-center p-2 bg-red-900 rounded-md shadow-xl">
       <DefundIcon className="text-red-300" />

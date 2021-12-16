@@ -57,8 +57,8 @@ export default function first() {
 
   return (
     <div className="h-screen  bg-gradient-to-tr from-slate-900 to-slate-800  grid place-items-center">
-      <div className="w-6/12 mx-auto rounded-lg radius-lg  shadow-lg drop-shadow-lg ">
-        <div className="bg-slate-800 rounded-lg radius-lg p-10 shadow-md">
+      <div className="w-4/12 mx-auto rounded-lg radius-lg  shadow-lg drop-shadow-lg ">
+        <div className="bg-slate-800 rounded-lg radius-lg p-10 shadow-md flex flex-col justify-center">
           <h1 className="text-lg font-medium text-slate-50">Disclaimers</h1>
           <p className="text-md font-light text-white my-3"></p>
 
