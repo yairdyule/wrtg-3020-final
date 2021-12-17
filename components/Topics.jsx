@@ -1,14 +1,24 @@
+import { CgSpinnerAlt } from "react-icons/cg";
 import {
   MdAttachMoney,
   MdMoneyOffCsred,
   MdOutlineHealthAndSafety,
 } from "react-icons/md";
-import { GiFire } from "react-icons/gi";
+import { GiFire, GiPoliceTarget, GiReceiveMoney } from "react-icons/gi";
+import { BsArrowRight } from "react-icons/bs";
 import { BsPersonFill, BsFillPeopleFill } from "react-icons/bs";
+import { BiInfinite } from "react-icons/bi";
 import Topic from "./Topic";
 
+import { FaBalanceScaleLeft, FaBalanceScale } from "react-icons/fa";
 import { BsQuestion } from "react-icons/bs";
+import {
+  HiTrendingDown,
+  HiTrendingUp,
+  HiOutlineArrowRight,
+} from "react-icons/hi";
 import { useState } from "react";
+import Link from "next/link";
 
 const SwitchButton = (props) => {
   const [defund, setDefund] = useState(props.defund);
@@ -24,7 +34,7 @@ const SwitchButton = (props) => {
 
   const defundButton = (
     <button
-      className="inline-flex h-12 w-14 text-red-300 items-center justify-center p-2 bg-red-900 rounded-md shadow-xl"
+      className="inline-flex h-12 w-14 text-yellow-300 items-center justify-center p-2 bg-yellow-900 rounded-md shadow-xl hover:bg-yellow-800 transition ease-in duration-150 hover:text-yellow-400"
       onClick={onClick}
     >
       <div className="flex flex-col justify-center items-center">
@@ -36,7 +46,7 @@ const SwitchButton = (props) => {
 
   const unsureButton = (
     <button
-      className="inline-flex h-12 w-14 text-indigo-300 items-center justify-center p-2 bg-indigo-900 rounded-md shadow-xl"
+      className="inline-flex h-12 w-14 text-indigo-300 items-center justify-center p-2 bg-indigo-900 rounded-md shadow-xl hover:bg-indigo-800 hover:text-indigo-200"
       onClick={onClick}
     >
       <div className="flex flex-col justify-center items-center">
@@ -48,7 +58,7 @@ const SwitchButton = (props) => {
 
   const dontButton = (
     <button
-      className="inline-flex h-12 w-14 text-green-300 items-center justify-center p-2 bg-green-900 rounded-md shadow-xl"
+      className="inline-flex h-12 w-14 text-blue-300 items-center justify-center p-2 bg-blue-900 rounded-md shadow-xl transition ease-in duration-150 hover:bg-blue-800 hover:text-blue-600"
       onClick={onClick}
     >
       <div className="flex flex-col justify-center items-center">
@@ -65,38 +75,69 @@ const SwitchButton = (props) => {
 const loadTopics = () => {
   let brutality = {
     topic: "brutality",
-    defundText: "the police are brutal to black people",
-    dontText: `actually, they're brutal to everyone`,
-    DefundIcon: BsPersonFill,
+    defundText:
+      "police forces  are overly-militarized and unnecessarily brutal - demilitarize them and fund communities",
+    dontText: `police work a stressful job, are undertrained, and are overworked. funding these problems will lead to better outcomes`,
+    DefundIcon: GiPoliceTarget,
     DontIcon: BsFillPeopleFill,
     defund: true,
   };
-  let funding = {
-    topic: "better use for funding",
+  let efficacy = {
+    topic: "efficacy",
     defundText:
-      "the money we take from them could go to upstream social services",
+      "police don't even decrease crime, they beget creative criminals",
     dontText:
-      "underfunded police have led to the situation we witness. *all* resources need more funding.",
+      "removing police won't decrease crime. well-funded, evidence-led police departments will",
+    DefundIcon: HiTrendingUp,
+    DontIcon: HiTrendingDown,
+    defund: true,
+  };
+  let funding = {
+    topic: "funding",
+    defundText:
+      "all/some of police departments' funding should be diverted to fund social programs",
+    dontText: "underfunded police forces have led to the situation we witness",
     DefundIcon: MdMoneyOffCsred,
-    DontIcon: MdAttachMoney,
+    DontIcon: GiReceiveMoney,
+    defund: true,
+  };
+  let accountability = {
+    topic: "accountability",
+    defundText:
+      "individual police need to stand accountable for their unjust actions",
+    dontText:
+      "due to the nature of their work, officers should be granted some discretion",
+    DefundIcon: FaBalanceScaleLeft,
+    DontIcon: FaBalanceScale,
     defund: true,
   };
   let wake = {
     topic: "without police",
     defundText:
-      "we can implement mechanisms by which communities can self-govern as they see fit",
-    dontText: "there will be chaos",
-    DefundIcon: MdOutlineHealthAndSafety,
-    DontIcon: GiFire,
+      "communities can implement mechanisms by which they can self-govern, as they see fit",
+    dontText:
+      "criminal activity will reign unfettered, causing communities to become unsafe",
+    DefundIcon: BiInfinite,
+    DontIcon: MdOutlineHealthAndSafety,
     defund: true,
   };
-  return [brutality, funding, wake];
+  let popularity = {
+    topic: "unanimity",
+    defundText: "it's what the people want!",
+    dontText: '"defund" is an unpopular stance',
+    DefundIcon: BsFillPeopleFill,
+    DontIcon: BsPersonFill,
+    defund: true,
+  };
+  return [brutality, funding, efficacy, wake, popularity, accountability];
 };
 
 export default function Topics() {
   const [state, setState] = useState(loadTopics());
   const [globalDefund, setGlobalDefund] = useState(true);
   const [unsure, setUnsure] = useState(false);
+  const [hasChanged, setHasChanged] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onSwitch = (index, stance) => {
     let tempState = [...state];
@@ -107,7 +148,15 @@ export default function Topics() {
     } else {
       setUnsure(false);
     }
+    setHasChanged(true);
   };
+
+  const checkEqual = () => {
+    let canary = state[0].defund;
+    return state.every(({ defund }) => defund == canary);
+  };
+
+  console.log(checkEqual());
 
   const checkUnsure = () => {
     return state.filter(({ defund }) => defund != globalDefund).length > 0;
@@ -125,7 +174,7 @@ export default function Topics() {
   };
 
   return (
-    <div className="bg-slate-900  h-screen w-full flex flex-col items-center justify-center">
+    <div className="bg-slate-900 h-fit lg:h-screen overflow-auto  w-screen flex flex-col items-center justify-start py-5">
       <SwitchButton
         className="h-8 w-8"
         defund={globalDefund}
@@ -133,11 +182,35 @@ export default function Topics() {
         switchGlobal={switchGlobal}
         unsure={unsure}
       />
-      {state.map((issue, index) => {
-        return (
-          <Topic issue={issue} index={index} onSwitch={onSwitch} key={index} />
-        );
-      })}
+      <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-y-0.5 gap-x-2">
+        {state.map((issue, index) => {
+          return (
+            <Topic
+              issue={issue}
+              index={index}
+              onSwitch={onSwitch}
+              key={index}
+            />
+          );
+        })}
+      </div>
+
+      <div className="pt-8">
+        <Link href="/fin">
+          <button
+            className="inline-flex shadow-lg h-8 w-12 text-slate-500 items-center justify-center p-2 bg-slate-800 rounded-md shadow-md transition ease-out duration-150  hover:bg-slate-800 hover:shadow-xl hover:text-indigo-200"
+            onClick={() => {
+              setLoading(true);
+            }}
+          >
+            {loading ? (
+              <CgSpinnerAlt className="animate-spin" />
+            ) : (
+              <BsArrowRight />
+            )}
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
