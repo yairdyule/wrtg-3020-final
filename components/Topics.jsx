@@ -4,7 +4,7 @@ import {
   MdMoneyOffCsred,
   MdOutlineHealthAndSafety,
 } from "react-icons/md";
-import { GiFire, GiPoliceTarget, GiReceiveMoney } from "react-icons/gi";
+import { GiPoliceTarget, GiReceiveMoney } from "react-icons/gi";
 import { BsArrowRight } from "react-icons/bs";
 import { BsPersonFill, BsFillPeopleFill } from "react-icons/bs";
 import { BiInfinite } from "react-icons/bi";
@@ -12,11 +12,7 @@ import Topic from "./Topic";
 
 import { FaBalanceScaleLeft, FaBalanceScale } from "react-icons/fa";
 import { BsQuestion } from "react-icons/bs";
-import {
-  HiTrendingDown,
-  HiTrendingUp,
-  HiOutlineArrowRight,
-} from "react-icons/hi";
+import { HiTrendingDown, HiTrendingUp } from "react-icons/hi";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -34,7 +30,7 @@ const SwitchButton = (props) => {
 
   const defundButton = (
     <button
-      className="inline-flex h-12 w-14 text-yellow-300 items-center justify-center p-2 bg-yellow-900 rounded-md shadow-xl hover:bg-yellow-800 transition ease-in duration-150 hover:text-yellow-400"
+      className="inline-flex h-12 w-14 text-yellow-300 items-center justify-center p-4 mb-2 bg-yellow-900 rounded-md shadow-xl hover:bg-yellow-800 transition ease-in duration-150 hover:text-yellow-400"
       onClick={onClick}
     >
       <div className="flex flex-col justify-center items-center">
@@ -46,7 +42,7 @@ const SwitchButton = (props) => {
 
   const unsureButton = (
     <button
-      className="inline-flex h-12 w-14 text-indigo-300 items-center justify-center p-2 bg-indigo-900 rounded-md shadow-xl hover:bg-indigo-800 hover:text-indigo-200"
+      className="inline-flex h-12 w-14 text-indigo-300 items-center justify-center p-4 mb-2 bg-indigo-900 rounded-md shadow-xl hover:bg-indigo-800 hover:text-indigo-200"
       onClick={onClick}
     >
       <div className="flex flex-col justify-center items-center">
@@ -58,7 +54,7 @@ const SwitchButton = (props) => {
 
   const dontButton = (
     <button
-      className="inline-flex h-12 w-14 text-blue-300 items-center justify-center p-2 bg-blue-900 rounded-md shadow-xl transition ease-in duration-150 hover:bg-blue-800 hover:text-blue-600"
+      className="inline-flex h-12 w-14 text-blue-300 items-center justify-center p-4 mb-2 bg-blue-900 rounded-md shadow-xl transition ease-in duration-150 hover:bg-blue-800 hover:text-blue-600"
       onClick={onClick}
     >
       <div className="flex flex-col justify-center items-center">
@@ -96,7 +92,8 @@ const loadTopics = () => {
     topic: "funding",
     defundText:
       "all/some of police departments' funding should be diverted to fund social programs",
-    dontText: "underfunded police forces have led to the situation we witness",
+    dontText:
+      "underfunded police forces got us to this situation in the first place",
     DefundIcon: MdMoneyOffCsred,
     DontIcon: GiReceiveMoney,
     defund: true,
@@ -136,7 +133,6 @@ export default function Topics() {
   const [state, setState] = useState(loadTopics());
   const [globalDefund, setGlobalDefund] = useState(true);
   const [unsure, setUnsure] = useState(false);
-  const [hasChanged, setHasChanged] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const onSwitch = (index, stance) => {
@@ -148,7 +144,6 @@ export default function Topics() {
     } else {
       setUnsure(false);
     }
-    setHasChanged(true);
   };
 
   const checkEqual = () => {
@@ -198,7 +193,7 @@ export default function Topics() {
       <div className="pt-8">
         <Link href="/fin">
           <button
-            className="inline-flex shadow-lg h-8 w-12 text-slate-500 items-center justify-center p-2 bg-slate-800 rounded-md shadow-md transition ease-out duration-150  hover:bg-slate-800 hover:shadow-xl hover:text-indigo-200"
+            className="inline-flex shadow-lg h-8 w-12 text-slate-500 items-center justify-center p-2 bg-slate-800 rounded-md  transition ease-out duration-150  hover:bg-slate-800 hover:shadow-xl hover:text-indigo-200"
             onClick={() => {
               setLoading(true);
             }}
