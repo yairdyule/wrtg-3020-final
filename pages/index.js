@@ -87,9 +87,9 @@ export default function First() {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="h-fill sm:w-screen lg:h-screen bg-slate-900 flex flex-col items-center justify-start pt-32 ">
-      <div className="w-4/12 sm:w-screen mx-auto rounded-lg radius-lg  shadow-lg drop-shadow-lg ">
-        <div className="bg-slate-800 min-w-11/12 rounded-lg radius-lg p-10 shadow-md flex flex-col justify-center">
+    <div className="h-screen sm:w-screen lg:h-screen bg-slate-900 flex flex-col items-center justify-start pt-4 lg:pt-32 ">
+      <div className=" sm:w-11/12 lg:w-fit mx-auto rounded-lg radius-lg  shadow-lg drop-shadow-lg ">
+        <div className="bg-slate-800 min-w-11/12 rounded-lg radius-lg p-4 lg:p-10 shadow-md flex flex-col justify-center">
           <h1 className="text-lg font-medium text-slate-50">
             disclaimers & disclosures
           </h1>
