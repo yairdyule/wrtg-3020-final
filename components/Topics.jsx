@@ -5,7 +5,7 @@ import {
   MdOutlineHealthAndSafety,
 } from "react-icons/md";
 import { GiPoliceTarget, GiReceiveMoney } from "react-icons/gi";
-import { BsArrowRight } from "react-icons/bs";
+import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
 import { BsPersonFill, BsFillPeopleFill } from "react-icons/bs";
 import { BiInfinite } from "react-icons/bi";
 import Topic from "./Topic";
@@ -190,18 +190,30 @@ export default function Topics() {
         })}
       </div>
 
-      <div className="pt-8">
-        <Link href="/fin">
+      <div className="pt-8 inline flex flex-row items-center justify-center gap-2">
+        <Link href="/">
           <button
-            className="inline-flex shadow-lg h-8 w-12 text-slate-500 items-center justify-center p-2 bg-slate-800 rounded-md  transition ease-out duration-150  hover:bg-slate-800 hover:shadow-xl hover:text-indigo-200"
+            className="inline-flex shadow-lg gap-1 h-8 w-32 text-slate-500 items-center justify-center p-2 bg-slate-800 rounded-md  transition ease-out duration-150  hover:bg-slate-800 hover:shadow-xl hover:text-indigo-200"
             onClick={() => {
               setLoading(true);
             }}
           >
+            <BsArrowLeft classname="pr-2 mr-2" />
+            disclaimers
+          </button>
+        </Link>
+        <Link href="/recommendations">
+          <button
+            className="inline-flex shadow-lg gap-1 h-8 w-32 text-slate-500 items-center justify-center p-2 bg-slate-800 rounded-md  transition ease-out duration-150  hover:bg-slate-800 hover:shadow-xl hover:text-indigo-200"
+            onClick={() => {
+              setLoading(true);
+            }}
+          >
+            <p>ideas</p>
             {loading ? (
               <CgSpinnerAlt className="animate-spin" />
             ) : (
-              <BsArrowRight />
+              <BsArrowRight className="" />
             )}
           </button>
         </Link>
