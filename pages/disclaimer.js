@@ -5,7 +5,7 @@ import { CgSpinnerAlt } from "react-icons/cg";
 import { useState } from "react";
 import Link from "next/link";
 
-function AccordionSection({ title, text }) {
+function AccordionSection({ title, pts }) {
   const [open, setOpen] = useState(false);
   const Open = (
     <span className="inline-flex items-center justify-center p-2  rounded-md ">
@@ -27,13 +27,15 @@ function AccordionSection({ title, text }) {
         }}
       >
         {!open ? Open : Close}
-        <h3 className="text-white font-medium">{title}</h3>
+        <h3 className="text-slate-100 font-medium">{title}</h3>
       </div>
       {open && (
         <div className=" transition ease-in-out delay-100 accordion-content px-5 pt-0 overflow-hidden ">
-          <p className=" text-slate-200 leading-6 font-light pl-9 pb-5 text-justify">
-            {text}
-          </p>
+          <ul className="list-disc text-slate-200 leading-12 font-light pl-12 pb-5 text-justify">
+            {pts.map((text) => (
+              <li className="pt-2">{text}</li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
@@ -42,49 +44,59 @@ function AccordionSection({ title, text }) {
 
 export default function First() {
   let subj = {
-    title: "Subjectivity",
-    text: "I'm a subjective guy. I might get things wrong. To combat this, I'm welcoming suggestions—for every aspect of this site. I want this to be a resource that changes in response to valuable feedback, not a static source of outdated/misinformed rhetoric.",
+    title: "subjectivity",
+    pts: [
+      "as the product of an individual, this project is steeped in subjectivity",
+      "i tried to keep it within reason - if i failed to do so, feel free to contact me via email or github",
+    ],
   };
 
   let bias = {
-    title: "Bias",
-    text: "This project is necessarily limited by the scope of my information, the transmission of which is mediated by my decision-making process, which is filtered through perspective/biases. If this is ever problematic, please submit an issue on the project's Github. ",
+    title: "bias",
+    pts: [
+      "the points and perspectives that i offer are mediated by my biases",
+      "if you think i should include/modify anything, do not hesitate to contact me",
+    ],
   };
 
+  let goals = {
+    title: "goals & dreams",
+    pts: [
+      "w/ this website, i wish to casually portray some (limited) perspectives, covering a few (limited) facets of a massively complicated issue of great importance",
+      "as mentioned, i don't intend to be exhaustive in my coverage",
+      "however, if you think i should reconsider any of my content/design choices... you know what to do!",
+    ],
+  };
   let tech = {
-    title: "Technical aspects",
-    text: "The HTML, CSS, and Javascript for this project is handcrafted and maintained by myself. If there are issues of any sort, I urge you (even the non-technical) to open an issue on the project's Github.",
+    title: "the technical side",
+    pts: ["this site was hacked together", "it might break", "lmk if it does"],
   };
 
-  let items = [subj, bias, tech];
+  let items = [subj, bias, goals, tech];
   const [loading, setLoading] = useState(false);
 
   return (
     <div className="h-fill lg:h-screen bg-slate-900 flex flex-col items-center justify-start pt-32 ">
       <div className="w-4/12 mx-auto rounded-lg radius-lg  shadow-lg drop-shadow-lg ">
         <div className="bg-slate-800 rounded-lg radius-lg p-10 shadow-md flex flex-col justify-center">
-          <h1 className="text-lg font-medium text-slate-50">Disclaimers</h1>
-          <p className="text-md font-light text-white my-3"></p>
-
+          <h1 className="text-lg font-medium text-slate-50">
+            disclaimers & disclosures
+          </h1>
+          <p className="text-md font-light text-white my-1"></p>
           <p className="text-md font-light text-white my-3">
-            This site is not intended to be an exhaustive compendium of
-            scholarly resources. Rather, I aim to offer a cursory overview of
-            commonly-held perspectives on various issues surrounding
-            <span className="italic font-md text-blue-200"> #Defund</span>, with
-            which you may do as you wish.
+            full transparency - this was not created to be an exhaustive
+            resource
           </p>
-
-          <div className="h-1 w-full mx-auto  my-5"></div>
+          <p className="text-md font-light text-white my-3">
+            rather, i hope for it to serve as a casual reference, where readers
+            can survey some perspectives & go about their day
+          </p>
+          <div className="h-1 w-full mx-auto  my-2"></div>
           {items.map((item, index) => {
             return (
-              <AccordionSection
-                key={index}
-                title={item.title}
-                text={item.text}
-              />
+              <AccordionSection key={index} title={item.title} pts={item.pts} />
             );
           })}
-
           {/*continue button*/}
           <div className="pt-8 mx-auto ">
             <Link href="/">
@@ -95,8 +107,8 @@ export default function First() {
                 }}
               >
                 <span className=" transition ease-in-out duration-300 group-hover:text-white group-hover:text-md inline-flex px-2 group-hover:text-white">
-                  I understand the disclaimers. I will submit an issue on
-                  Github. ;)
+                  i understand the disclaimers - the designer is human and
+                  fallible
                 </span>
                 <span className="inline-flex bg-slate-600 text-slate-300 rounded-full h-6 mx-2 my-1 px-3 justify-center items-center transition ease-in-out duration-300 group-hover:bg-emerald-400 group-hover:text-white group-hover:text-md">
                   {loading ? (
