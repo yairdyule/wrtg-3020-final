@@ -3,16 +3,25 @@ import {
   MdAttachMoney,
   MdMoneyOffCsred,
   MdOutlineHealthAndSafety,
+  MdHearing,
+  MdSafetyDivider,
+  MdSignalWifiStatusbarConnectedNoInternet,
+  MdLowPriority,
 } from "react-icons/md";
-import { GiPoliceTarget, GiReceiveMoney } from "react-icons/gi";
+import { GiPoliceTarget, GiReceiveMoney, GiCardExchange } from "react-icons/gi";
 import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
 import { BsPersonFill, BsFillPeopleFill } from "react-icons/bs";
 import { BiInfinite } from "react-icons/bi";
 import Topic from "../components/Topic";
 
-import { FaBalanceScaleLeft, FaBalanceScale } from "react-icons/fa";
+import {
+  FaBalanceScaleLeft,
+  FaBalanceScale,
+  FaPeopleCarry,
+} from "react-icons/fa";
 import { BsQuestion } from "react-icons/bs";
 import { HiTrendingDown, HiTrendingUp } from "react-icons/hi";
+import { GoMailRead } from "react-icons/go";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -39,8 +48,8 @@ const loadTopics = () => {
       "fears of crime and violence are justifiable. are you married to abolition, or perhaps open to reform?",
     dontText:
       "have you made as strong an effort to understanding the reality of police brutality as for resisting reform?",
-    DefundIcon: GiPoliceTarget,
-    DontIcon: BsFillPeopleFill,
+    DefundIcon: MdHearing,
+    DontIcon: MdHearing,
     defund: true,
   };
   let messaging = {
@@ -49,8 +58,8 @@ const loadTopics = () => {
       '"defund" divides your allyship and embitters the uninitiated. a more all-embracing message/agenda may improve receptivity',
     dontText:
       "'defunders' don't want violence any more than you do. insinuations to that effect are baseless and divisive",
-    DefundIcon: HiTrendingUp,
-    DontIcon: HiTrendingDown,
+    DefundIcon: MdSafetyDivider,
+    DontIcon: MdSignalWifiStatusbarConnectedNoInternet,
     defund: true,
   };
   let agenda = {
@@ -59,21 +68,61 @@ const loadTopics = () => {
       "full-on abolition is untenable and unlikely. focusing efforts at reform may prove more fruitful",
     dontText:
       "those opposed to police reform out of partisanship might do well to reconsider their priorities",
-    DefundIcon: HiTrendingUp,
-    DontIcon: HiTrendingDown,
+    DefundIcon: MdLowPriority,
+    DontIcon: MdLowPriority,
     defund: true,
   };
-  let arstneio = {
-    topic: "",
+  let stakeholders = {
+    topic: "stakeholders",
     defundText:
-      "full-on abolition is untenable and unlikely. focusing efforts at reform may prove more fruitful",
-    dontText:
-      "those opposed to police reform out of partisanship might do well to reconsider their priorities",
-    DefundIcon: HiTrendingUp,
-    DontIcon: HiTrendingDown,
+      "how will you engage police forces and officers in the decision-making of the reform process?",
+    dontText: "how will you engage underfunded community entities? ",
+    DefundIcon: GiCardExchange,
+    DontIcon: FaPeopleCarry,
     defund: true,
   };
-  return [communication, messaging, agenda];
+  return [communication, stakeholders, messaging, agenda];
+};
+
+const FeedbackBox = () => {
+  const [show, setShow] = useState(false);
+  const onClick = () => {
+    setShow(!show);
+  };
+  return (
+    <a onClick={onClick}>
+      <div className="group cursor-pointer w-96 sm:w-fill bg-slate-800  h-48 rounded-lg px-6 py-8 mt-2 ring-1 ring-gray-900/5 shadow-xl transition ease-in  duration-150 hover:border-gray-800 hover:bg-gray-900">
+        <div className=" flex flex-col ">
+          <div className="rounded-md bg-slate-700 h-8 w-8"></div>{" "}
+          {/*icon placeholder*/}
+          <div className="flex-1 space-y-6 pt-8">
+            {show ? (
+              <div className="flex">
+                <div className="group-hover:animate-none">
+                  <p className="font-bold text-sm">
+                    if you have ideas, please reach out
+                  </p>
+                  <p className="text-sm">
+                    you can reach me on github or by emailing
+                    jaje9434@colorado.edu
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                <div className="mb-5 h-2 w-16 bg-slate-700 rounded"></div>
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="h-2 bg-slate-700 rounded col-span-2"></div>
+                  <div className="h-2 bg-slate-700 rounded col-span-1"></div>
+                </div>
+                <div className="h-2 w-48 bg-slate-700 rounded"></div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </a>
+  );
 };
 
 export default function Fin() {
@@ -129,6 +178,7 @@ export default function Fin() {
             />
           );
         })}
+        <FeedbackBox />
       </div>
 
       <div className="pt-8">
