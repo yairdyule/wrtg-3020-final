@@ -3,7 +3,7 @@ import { BsArrowLeft } from "react-icons/bs";
 import { CgSpinnerAlt } from "react-icons/cg";
 import { useState } from "react";
 
-export default function fin() {
+export default function Fin() {
   const [loading, setLoading] = useState(false);
   return (
     <div className="bg-slate-900 h-fit lg:h-screen overflow-auto  w-screen flex flex-col items-center justify-start py-5">

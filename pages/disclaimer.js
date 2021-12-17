@@ -40,7 +40,7 @@ function AccordionSection({ title, text }) {
   );
 }
 
-export default function first() {
+export default function First() {
   let subj = {
     title: "Subjectivity",
     text: "I'm a subjective guy. I might get things wrong. To combat this, I'm welcoming suggestions—for every aspect of this site. I want this to be a resource that changes in response to valuable feedback, not a static source of outdated/misinformed rhetoric.",
@@ -75,8 +75,14 @@ export default function first() {
           </p>
 
           <div className="h-1 w-full mx-auto  my-5"></div>
-          {items.map((item) => {
-            return <AccordionSection title={item.title} text={item.text} />;
+          {items.map((item, index) => {
+            return (
+              <AccordionSection
+                key={index}
+                title={item.title}
+                text={item.text}
+              />
+            );
           })}
 
           {/*continue button*/}
