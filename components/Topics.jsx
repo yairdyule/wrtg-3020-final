@@ -198,7 +198,7 @@ export default function Topics() {
               setLoading(true);
             }}
           >
-            <BsArrowLeft classname="pr-2 mr-2" />
+            <BsArrowLeft className="" />
             disclaimers
           </button>
         </Link>
