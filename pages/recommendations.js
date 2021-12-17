@@ -98,7 +98,7 @@ const FeedbackBox = () => {
           <div className="flex-1 space-y-6 pt-8">
             {show ? (
               <div className="flex">
-                <div className="group-hover:animate-none">
+                <div className="text-slate-50 group-hover:animate-none">
                   <p className="font-bold text-sm">
                     if you have ideas, please reach out
                   </p>
