@@ -19,18 +19,16 @@ export const Navbar = () => {
         </button>
       </Link>
       <button
-        className="group cursor pointer shadow-lg text-slate-500 items-center justify-center p-2 bg-slate-800 rounded-md shadow-md transition ease-out duration-150 hover:bg-slate-800 hover:shadow-xl hover:text-emerald-600"
+        className="group cursor pointer shadow-lg text-slate-500 flex items-center justify-center p-2 bg-slate-800 rounded-md shadow-md transition ease-out duration-150 hover:bg-slate-800 hover:shadow-xl hover:text-emerald-600"
         onMouseEnter={() => setEmail(true)}
         onMouseLeave={() => setEmail(false)}
       >
-        <span className="inline-flex items-center justify-center grow">
-          <MdOutlineMail className="h-8 w-8" />
-          {email && (
-            <p className="text-slate-500 invisible transition delay-150 duration-300 group-hover:visible group-hover:text-emerald-500 ">
-              jaje9434@colorado.edu
-            </p>
-          )}
-        </span>
+        <MdOutlineMail className="h-8 w-8" />
+        {email && (
+          <p className="text-slate-500 text-sm invisible transition delay-150 duration-300 group-hover:visible group-hover:text-emerald-500 ">
+            jaje9434@colorado.edu
+          </p>
+        )}
       </button>
     </nav>
   );
